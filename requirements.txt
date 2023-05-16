@@ -1,4 +1,3 @@
-tensorflow-gpu==2.0.0-beta1
 tqdm
 scipy
 pandas

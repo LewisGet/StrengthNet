@@ -41,7 +41,7 @@ def get_melspectrograms(sound_file, fs=FS, fft_size=FFT_SIZE):
     mag = np.abs(linear) #(1+n_fft/2, T)
 
     # TODO add mel spectrum
-    mel_basis = librosa.filters.mel(fs, fft_size, n_mels)  # (n_mels, 1+n_fft//2)
+    mel_basis = librosa.filters.mel(sr=fs, n_fft=fft_size, n_mels=n_mels)  # (n_mels, 1+n_fft//2)
     mel = np.dot(mel_basis, mag)  # (n_mels, t)
     # shape in (T, 1+n_fft/2)
     return np.transpose(mel.astype(np.float32))  

@@ -27,7 +27,6 @@ args = parser.parse_args()
 
  
 
-print('training with model architecture: {}'.format(args.model))   
 print('epochs: {}\nbatch_size: {}'.format(args.epoch, args.batch_size))
 
 # 0 = all messages are logged (default behavior)
