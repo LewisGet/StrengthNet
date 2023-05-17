@@ -17,6 +17,8 @@ from tensorflow import keras
 import model
 import utils
 import random
+
+import config
  
 
 parser = argparse.ArgumentParser()
@@ -69,7 +71,7 @@ NUM_TEST=1000
 NUM_VALID=3000
 
 
-emo_label = ['Angry', 'Happy', 'Surprise', 'Sad']
+emo_label = config.emo_label
 
 
 

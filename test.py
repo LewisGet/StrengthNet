@@ -17,6 +17,7 @@ from model import CNN_BLSTM
 
 import utils   
 import random
+import config
  
 
 def find_files(root_dir, query="*.wav", include_root_dir=True):
@@ -85,7 +86,6 @@ def main():
 
     # evaluation
     print("Start evaluating {} waveforms...".format(len(wavfiles)))
-    results = []
 
     for wavfile in tqdm(wavfiles):
         
@@ -96,14 +96,14 @@ def main():
         # make prediction
         Strength_score, Frame_score, emo_class = model.predict(mel_sgram, verbose=0, batch_size=1)
 
-        # write to list
-        result = wavfile + " {:.3f}".format(Strength_score)
-        results.append(result)
- 
-    # write final raw result
-    resultrawpath = os.path.join(args.rootdir, "StrengthNet_result_raw.txt")
-    with open(resultrawpath, "w") as outfile:
-        outfile.write("\n".join(sorted(results)))
+        labels = []
+        for emo_class_score in emo_class:
+            emo_class_score = emo_class_score.tolist()
+            max_value = max(emo_class_score)
+            max_index = emo_class_score.index(max_value)
+            labels.append(config.emo_label[max_index])
+
+        print(wavfile, Strength_score, labels)
        
 
 if __name__ == '__main__':

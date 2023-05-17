@@ -11,6 +11,8 @@ import random
 
 from tensorflow.keras import utils
 
+import config
+
  
 
 FS = 16000
@@ -26,7 +28,7 @@ BIN_DIR = '../StrengthNet/training_data_en/'
 # Strength score for english subset (0011-0020) of ESD data.
 list_file = 'Score_List.csv'
 
-emo_label = ['Angry', 'Happy', 'Surprise', 'Sad']
+emo_label = config.emo_label
  
 
 def get_melspectrograms(sound_file, fs=FS, fft_size=FFT_SIZE): 
