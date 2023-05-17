@@ -123,6 +123,13 @@ valid_data = utils.data_generator(valid_list, BIN_DIR, frame=True, batch_size=BA
 tr_steps = int(NUM_TRAIN/BATCH_SIZE)
 val_steps = int(NUM_VALID/BATCH_SIZE)
 
+checkpoint_path = os.path.join(OUTPUT_DIR,'strengthnet.h5')
+
+if os.path.isfile(checkpoint_path):
+    print("found: %s" % checkpoint_path)
+    model.load_weights(os.path.join(OUTPUT_DIR,'strengthnet.h5'),)
+    print("continue with weights.")
+
 
 # start fitting model
 hist = model.fit_generator(train_data,
